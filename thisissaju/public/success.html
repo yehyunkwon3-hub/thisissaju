@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>결제 확인 중 — 이것이 사주다</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700;900&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f5efe3; --paper2:#ede4d3; --card:#fffdf8; --ink:#1f1b16; --ink2:#5b5248; --ink3:#8d8376;
+  --seal:#b8382a; --seal-d:#8f2a1f; --line:#ddd2bf;
+  --wood:#3f7a4f; --fire:#c2402e; --earth:#b07d22; --metal:#7c8591; --water:#284a73;
+  --serif:'Noto Serif KR',serif; --sans:'Noto Sans KR',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.65;
+  background-image:radial-gradient(circle at 20% 0%,rgba(184,56,42,.06),transparent 40%),radial-gradient(circle at 100% 30%,rgba(40,74,115,.05),transparent 40%);}
+.wrap{max-width:480px;margin:0 auto;padding:0 18px 60px}
+header{padding:28px 0 14px;text-align:center}
+.logo{display:inline-flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:900;font-size:26px;letter-spacing:-.5px}
+.seal{width:36px;height:36px;border-radius:6px;background:var(--seal);color:#fff6ea;display:grid;place-items:center;font-size:17px;font-weight:700;transform:rotate(-4deg);box-shadow:inset 0 0 0 2px rgba(255,255,255,.18)}
+.tag{color:var(--ink2);font-size:14px;margin-top:6px}
+.tabs{display:flex;background:var(--paper2);border-radius:999px;padding:4px;margin:18px 0 20px}
+.tabs button{flex:1;border:0;background:transparent;font:500 15px var(--sans);color:var(--ink2);padding:10px;border-radius:999px;cursor:pointer}
+.tabs button.on{background:var(--card);color:var(--ink);font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:14px;box-shadow:0 1px 0 rgba(0,0,0,.02)}
+.card h2{font-family:var(--serif);font-size:19px;font-weight:700;margin-bottom:12px;letter-spacing:-.3px}
+.card h3{font-family:var(--serif);font-size:16px;font-weight:700;margin:16px 0 6px}
+.muted{color:var(--ink3);font-size:13px}
+label.f{display:block;font-size:13px;font-weight:700;color:var(--ink2);margin:14px 0 6px}
+input[type=text],select{width:100%;font:16px var(--sans);padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);appearance:none;-webkit-appearance:none}
+select{background-image:linear-gradient(45deg,transparent 50%,var(--ink3) 50%),linear-gradient(135deg,var(--ink3) 50%,transparent 50%);background-position:calc(100% - 16px) 50%,calc(100% - 11px) 50%;background-size:5px 5px;background-repeat:no-repeat;padding-right:28px}
+input:focus,select:focus{outline:2px solid rgba(184,56,42,.35);border-color:var(--seal)}
+.row{display:flex;gap:8px}.row>*{flex:1}
+.seg{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
+.seg button{flex:1;border:0;background:transparent;font:500 15px var(--sans);padding:10px;color:var(--ink2);cursor:pointer}
+.seg button.on{background:var(--ink);color:#fff}
+.chk{display:flex;align-items:center;gap:6px;font-size:14px;color:var(--ink2);margin-top:8px;cursor:pointer}
+.chk input{width:17px;height:17px;accent-color:var(--seal)}
+.btn{display:block;width:100%;border:0;border-radius:14px;padding:15px;font:700 16px var(--sans);cursor:pointer;margin-top:18px}
+.btn.main{background:var(--seal);color:#fff8ef}.btn.main:active{background:var(--seal-d)}
+.btn.ghost{background:transparent;border:1px solid var(--ink);color:var(--ink)}
+.err{color:var(--seal);font-size:13px;margin-top:8px;min-height:1em}
+.hidden{display:none!important}
+
+/* 원국 */
+.chart{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;text-align:center}
+.chart .hd{font-size:12px;color:var(--ink3);font-weight:500}
+.chart .god{font-size:11.5px;color:var(--ink2);font-weight:500;min-height:18px}
+.gz{border-radius:12px;padding:8px 0 6px;color:#fff;position:relative}
+.gz b{display:block;font-family:var(--serif);font-size:30px;font-weight:700;line-height:1.15}
+.gz small{font-size:12px;opacity:.88}
+.gz.me{box-shadow:0 0 0 2.5px var(--card),0 0 0 4.5px var(--seal)}
+.gz.empty{background:var(--paper2);color:var(--ink3)}.gz.empty b{font-size:20px;padding:6px 0}
+.e0{background:var(--wood)}.e1{background:var(--fire)}.e2{background:var(--earth)}.e3{background:var(--metal)}.e4{background:var(--water)}
+.t0{color:var(--wood)}.t1{color:var(--fire)}.t2{color:var(--earth)}.t3{color:var(--metal)}.t4{color:var(--water)}
+.meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.pill{font-size:12px;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:3px 10px;color:var(--ink2)}
+
+.hero-me{display:flex;gap:14px;align-items:center;margin-bottom:10px}
+.hero-me .ic{font-size:40px;width:64px;height:64px;border-radius:16px;background:var(--paper);display:grid;place-items:center;flex:none}
+.hero-me .k{font-size:12.5px;color:var(--seal);font-weight:700}
+.hero-me .t{font-family:var(--serif);font-size:19px;font-weight:700;line-height:1.35}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:14px;margin-top:12px;background:var(--paper);padding:12px;border-radius:12px}
+.kv dt{color:var(--ink3);font-weight:500}
+
+.bars{display:flex;flex-direction:column;gap:8px}
+.bar{display:grid;grid-template-columns:44px 1fr 34px;align-items:center;gap:8px;font-size:14px}
+.bar .lb{font-weight:700}
+.bar .tr{height:12px;background:var(--paper2);border-radius:99px;overflow:hidden}
+.bar .fl{height:100%;border-radius:99px;transition:width .8s cubic-bezier(.2,.8,.2,1)}
+.bar .n{text-align:right;color:var(--ink2);font-variant-numeric:tabular-nums}
+.note{font-size:14.5px;color:var(--ink);background:var(--paper);border-left:3px solid var(--seal);padding:10px 12px;border-radius:0 10px 10px 0;margin-top:10px}
+
+/* 잠금 */
+.locked{position:relative}
+.locked .blur{filter:blur(6px);user-select:none;pointer-events:none;opacity:.75}
+.lockbox{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;background:linear-gradient(180deg,rgba(255,253,248,.2),rgba(255,253,248,.92) 45%)}
+.lockbox .pr{font-family:var(--serif);font-size:30px;font-weight:900;color:var(--seal)}
+.lockbox .pr s{font-size:15px;color:var(--ink3);font-weight:400;margin-right:6px}
+.lockbox ul{list-style:none;font-size:14px;color:var(--ink2);margin:8px 0 2px}
+.lockbox .btn{max-width:300px}
+.sec{padding:14px 0;border-top:1px dashed var(--line)}.sec:first-child{border-top:0;padding-top:0}
+.sec .h{display:flex;align-items:center;gap:8px;font-family:var(--serif);font-weight:700;font-size:16.5px;margin-bottom:6px}
+.sec p{font-size:14.5px;margin-top:4px}
+.badge{font:700 11px var(--sans);background:var(--ink);color:#fff;border-radius:6px;padding:2px 7px}
+.dw{display:flex;gap:6px;overflow-x:auto;padding:4px 2px 8px;scrollbar-width:thin}
+.dw .c{flex:none;width:58px;text-align:center;border:1px solid var(--line);border-radius:10px;padding:6px 0;background:#fff}
+.dw .c.now{border-color:var(--seal);box-shadow:0 0 0 1px var(--seal);background:#fff6f2}
+.dw .c b{font-family:var(--serif);font-size:18px;display:block;line-height:1.2}
+.dw .c span{font-size:11px;color:var(--ink3)}
+
+/* 궁합 */
+.pair{display:grid;grid-template-columns:1fr;gap:0}
+.pcard{border:1px solid var(--line);border-radius:14px;padding:4px 14px 14px;margin-bottom:10px;background:#fff}
+.pcard .who{font-family:var(--serif);font-weight:700;margin-top:10px}
+.score{text-align:center;padding:6px 0 4px}
+.ring{width:150px;height:150px;margin:0 auto;position:relative}
+.ring svg{transform:rotate(-90deg)}
+.ring .v{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--serif);font-weight:900;font-size:42px}
+.ring .v small{font-size:16px;font-weight:600}
+.tier{font-family:var(--serif);font-weight:700;font-size:20px;margin-top:6px}
+.vs{display:flex;justify-content:center;align-items:center;gap:14px;margin:14px 0 4px}
+.vs .p{text-align:center}.vs .p b{font-family:var(--serif);font-size:30px;display:block;line-height:1.1}
+.vs .p span{font-size:12px;color:var(--ink3)}
+.vs .x{font-size:20px;color:var(--seal)}
+.reason{list-style:none;margin-top:8px}
+.reason li{display:flex;gap:10px;padding:10px 0;border-top:1px solid var(--paper2);font-size:14.5px}
+.reason li .d{flex:none;font:700 13px var(--sans);width:42px;text-align:center;border-radius:8px;padding:2px 0;align-self:flex-start}
+.plus{background:#e7f1ea;color:var(--wood)}.minus{background:#f8e5e1;color:var(--seal)}
+.share{display:flex;gap:8px;margin-top:6px}
+.share input{flex:1;font-size:13px;color:var(--ink2)}
+.share button{flex:none;border:0;background:var(--ink);color:#fff;border-radius:10px;padding:0 16px;font:700 14px var(--sans);cursor:pointer}
+
+/* 결제 모달 */
+.modal{position:fixed;inset:0;background:rgba(20,16,12,.5);display:flex;align-items:flex-end;justify-content:center;z-index:50;animation:fade .2s}
+.sheet{background:var(--card);width:100%;max-width:480px;border-radius:22px 22px 0 0;padding:22px 20px 28px;animation:up .28s cubic-bezier(.2,.8,.2,1)}
+.sheet .demo{font-size:12px;background:#fff3cd;color:#7a5a00;border-radius:8px;padding:6px 10px;margin-bottom:14px}
+.sheet .line{display:flex;justify-content:space-between;padding:8px 0;font-size:15px}
+.sheet .line.tot{border-top:1px solid var(--line);margin-top:6px;padding-top:12px;font-weight:700;font-size:17px}
+.paym{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px}
+.paym button{border:1px solid var(--line);background:#fff;border-radius:10px;padding:10px 4px;font:500 13px var(--sans);cursor:pointer}
+.paym button.on{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
+@keyframes fade{from{opacity:0}}@keyframes up{from{transform:translateY(40px);opacity:0}}
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 18px;border-radius:999px;font-size:14px;z-index:60;animation:fade .2s}
+footer{text-align:center;font-size:12px;color:var(--ink3);margin-top:26px;line-height:1.7}
+.spin{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:rot .7s linear infinite;vertical-align:-3px}
+@keyframes rot{to{transform:rotate(360deg)}}
+.fadein{animation:fadein .5s ease both}@keyframes fadein{from{opacity:0;transform:translateY(8px)}}
+</style></head><body><div class="wrap"><header><div class="logo"><span class="seal">命</span>이것이 사주다</div></header>
+<div class="card" style="text-align:center;padding:36px 20px" id="box"><span class="spin" style="border-color:rgba(184,56,42,.25);border-top-color:var(--seal);width:28px;height:28px"></span><p style="margin-top:14px">결제를 확인하고 있어요…</p><p class="muted">창을 닫지 마세요</p></div></div>
+<script>
+const q = new URLSearchParams(location.search);
+const paymentKey = q.get('paymentKey'), orderId = q.get('orderId'), amount = Number(q.get('amount'));
+const box = document.getElementById('box');
+const fail = m => { box.innerHTML = `<h2>결제를 완료하지 못했어요</h2><p class="muted">${m.replace(/[<>&]/g,'')}</p><a class="btn ghost" href="/" style="text-decoration:none">처음으로</a>`; };
+(async () => {
+  let pend = null; try { pend = JSON.parse(localStorage.getItem('pn_pending_' + orderId)); } catch (e) {}
+  if (!pend) return fail('주문 정보를 찾을 수 없어요. 결제를 시작한 브라우저에서 열어 주세요. 승인되지 않은 결제는 청구되지 않아요.');
+  try {
+    const res = await fetch('/api/confirm', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ paymentKey, orderId, amount, form: pend.form, method: pend.method }) });
+    const d = await res.json();
+    if (!res.ok) return fail(d.message || '결제 승인에 실패했어요');
+    const all = JSON.parse(localStorage.getItem('pn_purchases') || '{}');
+    all[pend.bk] = { orderId, token: d.token, at: Date.now() };
+    localStorage.setItem('pn_purchases', JSON.stringify(all));
+    location.replace('/?paid=' + encodeURIComponent(orderId));
+  } catch (e) { fail('네트워크 오류가 났어요. 새로고침하면 다시 확인해요.'); }
+})();
+</script></body></html>

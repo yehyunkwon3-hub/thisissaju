@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>이것이 사주다 — 990원 사주 풀이</title>
+<meta name="description" content="생년월일시로 보는 타고난 여덟 글자와 다섯 기운 무료 풀이, 궁합, 990원 상세 풀이와 나의 행운 동물">
+<meta property="og:type" content="website">
+<meta property="og:title" content="이것이 사주다 — 타고난 여덟 글자로 읽는 나의 결">
+<meta property="og:description" content="다람이가 쉽게 읽어 주는 내 사주. 무료 풀이와 궁합, 990원 상세 풀이와 행운 동물">
+<meta property="og:image" content="/og/default.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#f5efe3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F3F4EF; --paper2:#E4E6DE; --card:#FFFFFF; --ink:#22242A; --ink2:#545862; --ink3:#6E727C;
+  --seal:#B8402F; --seal-d:#8F2F22; --blue:#2E5E8C; --blue-d:#1F4468; --line:#DFE1DA; --field:#FAFAF7; --fline:#CFD2C9;
+  --wood:#2E5E8C; --fire:#B8402F; --earth:#D69A1C; --metal:#FFFFFF; --water:#2A2B30;
+  --serif:'Gowun Batang',serif; --sans:'Gowun Dodum','Apple SD Gothic Neo',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.65;
+  background-image:radial-gradient(circle at 20% 0%,rgba(184,56,42,.06),transparent 40%),radial-gradient(circle at 100% 30%,rgba(40,74,115,.05),transparent 40%);}
+.wrap{max-width:480px;margin:0 auto;padding:0 18px 60px}
+header{padding:28px 0 14px;text-align:center}
+.logo{display:inline-flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:900;font-size:26px;letter-spacing:-.5px}
+.seal{width:36px;height:36px;border-radius:6px;background:var(--seal);color:#fff6ea;display:grid;place-items:center;font-size:17px;font-weight:700;transform:rotate(-4deg);box-shadow:inset 0 0 0 2px rgba(255,255,255,.18)}
+.tag{color:var(--ink2);font-size:14px;margin-top:6px}
+.tabs{display:flex;background:var(--paper2);border-radius:999px;padding:4px;margin:18px 0 20px}
+.tabs button{flex:1;border:0;background:transparent;font:500 15px var(--sans);color:var(--ink2);padding:10px;border-radius:999px;cursor:pointer}
+.tabs button.on{background:var(--card);color:var(--ink);font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:14px;box-shadow:0 1px 0 rgba(0,0,0,.02)}
+.card h2{font-family:var(--serif);font-size:19px;font-weight:700;margin-bottom:12px;letter-spacing:-.3px}
+.card h3{font-family:var(--serif);font-size:16px;font-weight:700;margin:16px 0 6px}
+.muted{color:var(--ink3);font-size:13px}
+label.f{display:block;font-size:13px;font-weight:700;color:var(--ink2);margin:14px 0 6px}
+input[type=text],select{width:100%;font:16px var(--sans);padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);appearance:none;-webkit-appearance:none}
+select{background-image:linear-gradient(45deg,transparent 50%,var(--ink3) 50%),linear-gradient(135deg,var(--ink3) 50%,transparent 50%);background-position:calc(100% - 16px) 50%,calc(100% - 11px) 50%;background-size:5px 5px;background-repeat:no-repeat;padding-right:28px}
+input:focus,select:focus{outline:2px solid rgba(184,56,42,.35);border-color:var(--seal)}
+.row{display:flex;gap:8px}.row>*{flex:1}
+.seg{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
+.seg button{flex:1;border:0;background:transparent;font:500 15px var(--sans);padding:10px;color:var(--ink2);cursor:pointer}
+.seg button.on{background:var(--ink);color:#fff}
+.chk{display:flex;align-items:center;gap:6px;font-size:14px;color:var(--ink2);margin-top:8px;cursor:pointer}
+.chk input{width:17px;height:17px;accent-color:var(--seal)}
+.btn{display:block;width:100%;border:0;border-radius:14px;padding:15px;font:700 16px var(--sans);cursor:pointer;margin-top:18px}
+.btn.main{background:var(--seal);color:#fff8ef}.btn.main:active{background:var(--seal-d)}
+.btn.ghost{background:transparent;border:1px solid var(--ink);color:var(--ink)}
+.err{color:var(--seal);font-size:13px;margin-top:8px;min-height:1em}
+.hidden{display:none!important}
+
+/* 원국 */
+.chart{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;text-align:center}
+.chart .hd{font-size:12px;color:var(--ink3);font-weight:500}
+.chart .god{font-size:11.5px;color:var(--ink2);font-weight:500;min-height:18px}
+.gz{border-radius:12px;padding:8px 0 6px;color:#fff;position:relative}
+.gz b{display:block;font-family:var(--serif);font-size:30px;font-weight:700;line-height:1.15}
+.gz small{font-size:12px;opacity:.88}
+.gz.me{box-shadow:0 0 0 2.5px var(--card),0 0 0 4.5px var(--seal)}
+.gz.empty{background:var(--paper2);color:var(--ink3)}.gz.empty b{font-size:20px;padding:6px 0}
+.e0{background:var(--wood)}.e1{background:var(--fire)}.e2{background:var(--earth)}.e3{background:var(--metal)}.e4{background:var(--water)}
+.t0{color:var(--wood)}.t1{color:var(--fire)}.t2{color:var(--earth)}.t3{color:var(--metal)}.t4{color:var(--water)}
+.meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.pill{font-size:12px;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:3px 10px;color:var(--ink2)}
+
+.hero-me{display:flex;gap:14px;align-items:center;margin-bottom:10px}
+.hero-me .ic{font-size:40px;width:64px;height:64px;border-radius:16px;background:var(--paper);display:grid;place-items:center;flex:none}
+.hero-me .k{font-size:12.5px;color:var(--seal);font-weight:700}
+.hero-me .t{font-family:var(--serif);font-size:19px;font-weight:700;line-height:1.35}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:14px;margin-top:12px;background:var(--paper);padding:12px;border-radius:12px}
+.kv dt{color:var(--ink3);font-weight:500}
+
+.bars{display:flex;flex-direction:column;gap:8px}
+.bar{display:grid;grid-template-columns:44px 1fr 34px;align-items:center;gap:8px;font-size:14px}
+.bar .lb{font-weight:700}
+.bar .tr{height:12px;background:var(--paper2);border-radius:99px;overflow:hidden}
+.bar .fl{height:100%;border-radius:99px;transition:width .8s cubic-bezier(.2,.8,.2,1)}
+.bar .n{text-align:right;color:var(--ink2);font-variant-numeric:tabular-nums}
+.note{font-size:14.5px;color:var(--ink);background:var(--paper);border-left:3px solid var(--seal);padding:10px 12px;border-radius:0 10px 10px 0;margin-top:10px}
+
+/* 잠금 */
+.locked{position:relative}
+.locked .blur{filter:blur(6px);user-select:none;pointer-events:none;opacity:.75}
+.lockbox{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;background:linear-gradient(180deg,rgba(255,253,248,.2),rgba(255,253,248,.92) 45%)}
+.lockbox .pr{font-family:var(--serif);font-size:30px;font-weight:900;color:var(--seal)}
+.lockbox .pr s{font-size:15px;color:var(--ink3);font-weight:400;margin-right:6px}
+.lockbox ul{list-style:none;font-size:14px;color:var(--ink2);margin:8px 0 2px}
+.lockbox .btn{max-width:300px}
+.sec{padding:14px 0;border-top:1px dashed var(--line)}.sec:first-child{border-top:0;padding-top:0}
+.sec .h{display:flex;align-items:center;gap:8px;font-family:var(--serif);font-weight:700;font-size:16.5px;margin-bottom:6px}
+.sec p{font-size:14.5px;margin-top:4px}
+.sec p+p{margin-top:9px}
+.sec .no{font:700 11px var(--sans);color:var(--ink3);margin-right:2px}
+.sec .hl{font-family:var(--serif);font-weight:700;font-size:16px;line-height:1.5;color:var(--seal-d);margin:2px 0 8px}
+.sec{padding:18px 0}
+.badge{font:700 11px var(--sans);background:var(--ink);color:#fff;border-radius:6px;padding:2px 7px}
+.dw{display:flex;gap:6px;overflow-x:auto;padding:4px 2px 8px;scrollbar-width:thin}
+.dw .c{flex:none;width:58px;text-align:center;border:1px solid var(--line);border-radius:10px;padding:6px 0;background:#fff}
+.dw .c.now{border-color:var(--seal);box-shadow:0 0 0 1px var(--seal);background:#fff6f2}
+.dw .c b{font-family:var(--serif);font-size:18px;display:block;line-height:1.2}
+.dw .c span{font-size:11px;color:var(--ink3)}
+.dw .c small{display:block;font-size:10px;color:var(--ink3);line-height:1.2}
+
+/* 궁합 */
+.pair{display:grid;grid-template-columns:1fr;gap:0}
+.pcard{border:1px solid var(--line);border-radius:14px;padding:4px 14px 14px;margin-bottom:10px;background:#fff}
+.pcard .who{font-family:var(--serif);font-weight:700;margin-top:10px}
+.score{text-align:center;padding:6px 0 4px}
+.ring{width:150px;height:150px;margin:0 auto;position:relative}
+.ring svg{transform:rotate(-90deg)}
+.ring .v{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--serif);font-weight:900;font-size:42px}
+.ring .v small{font-size:16px;font-weight:600}
+.tier{font-family:var(--serif);font-weight:700;font-size:20px;margin-top:6px}
+.vs{display:flex;justify-content:center;align-items:center;gap:14px;margin:14px 0 4px}
+.vs .p{text-align:center}.vs .p b{font-family:var(--serif);font-size:30px;display:block;line-height:1.1}
+.vs .p span{font-size:12px;color:var(--ink3)}
+.vs .x{font-size:20px;color:var(--seal)}
+.reason{list-style:none;margin-top:8px}
+.reason li{display:flex;gap:10px;padding:10px 0;border-top:1px solid var(--paper2);font-size:14.5px}
+.reason li .d{flex:none;font:700 13px var(--sans);width:42px;text-align:center;border-radius:8px;padding:2px 0;align-self:flex-start}
+.plus{background:#e7f1ea;color:var(--wood)}.minus{background:#f8e5e1;color:var(--seal)}
+.share{display:flex;gap:8px;margin-top:6px}
+.share input{flex:1;font-size:13px;color:var(--ink2)}
+.share button{flex:none;border:0;background:var(--ink);color:#fff;border-radius:10px;padding:0 16px;font:700 14px var(--sans);cursor:pointer}
+
+/* 결제 모달 */
+.modal{position:fixed;inset:0;background:rgba(20,16,12,.5);display:flex;align-items:flex-end;justify-content:center;z-index:50;animation:fade .2s}
+.sheet{background:var(--card);width:100%;max-width:480px;border-radius:22px 22px 0 0;padding:22px 20px 28px;animation:up .28s cubic-bezier(.2,.8,.2,1)}
+.sheet .demo{font-size:12px;background:#fff3cd;color:#7a5a00;border-radius:8px;padding:6px 10px;margin-bottom:14px}
+.sheet .line{display:flex;justify-content:space-between;padding:8px 0;font-size:15px}
+.sheet .line.tot{border-top:1px solid var(--line);margin-top:6px;padding-top:12px;font-weight:700;font-size:17px}
+.paym{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px}
+.paym button{border:1px solid var(--line);background:#fff;border-radius:10px;padding:10px 4px;font:500 13px var(--sans);cursor:pointer}
+.paym button.on{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
+@keyframes fade{from{opacity:0}}@keyframes up{from{transform:translateY(40px);opacity:0}}
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 18px;border-radius:999px;font-size:14px;z-index:60;animation:fade .2s}
+/* 기록 */
+.hist{padding:14px 16px}
+.hh{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}.hh b{font-family:var(--serif);font-size:15.5px}
+.hl{list-style:none;max-height:232px;overflow-y:auto}
+.hl li{display:flex;align-items:center;border-top:1px solid var(--paper2)}.hl li:first-child{border-top:0}
+.ho{flex:1;display:flex;align-items:center;gap:8px;flex-wrap:wrap;text-align:left;background:none;border:0;padding:10px 2px;cursor:pointer;font:inherit;color:var(--ink)}
+.ho .hn{font-weight:700;font-size:14.5px}.ho .hs{font-size:12.5px;color:var(--ink3)}
+.hx{background:none;border:0;color:var(--ink3);font-size:20px;width:34px;height:34px;cursor:pointer;border-radius:8px}.hx:hover{background:var(--paper)}
+.sharedbn{padding:12px 16px;font-size:14px;background:#fff6f2;border-color:#f0cfc6}.sharedbn a{color:var(--seal);font-weight:700;text-decoration:none;margin-left:4px}
+/* 보완법 */
+.bhead{display:flex;gap:12px;align-items:center;margin:12px 0 10px}.bhead b{font-family:var(--serif);font-size:16.5px}
+.bel{width:46px;height:46px;border-radius:12px;color:#fff;display:grid;place-items:center;font-family:var(--serif);font-size:24px;font-weight:700;flex:none}
+.sw{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.sw div{text-align:center;font-size:12.5px;color:var(--ink2)}
+.sw i{display:block;height:46px;border-radius:12px;margin-bottom:4px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}
+.bkv{grid-template-columns:72px 1fr;font-size:13.5px}.bkv dd{color:var(--ink)}
+.btab button{font-size:14px}
+.bhead .role{font-size:12px;color:var(--seal);font-weight:700}
+.yongline{flex-wrap:wrap;display:flex;gap:6px;margin:-2px 0 10px}
+.ychip{font:700 13px var(--sans);color:#fff;border-radius:999px;padding:4px 12px}
+.ychip.soft{background:var(--paper);border:1px solid var(--line);color:var(--ink);display:inline-flex;align-items:center;gap:6px}
+.ychip .dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+/* 올해·내년 키워드 */
+.ykw{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.yk{border:1px solid var(--line);border-radius:14px;padding:12px;background:#fff}
+.yk.next{background:#fffaf3;border-color:#ecd9bb}
+.yy{font-weight:700;font-size:13px;color:var(--ink2)}.yy span{font-weight:500;color:var(--ink3);margin-left:5px;font-size:12px}
+.ygz{display:flex;align-items:baseline;gap:2px;margin:4px 0 2px}.ygz b{font-family:var(--serif);font-size:26px;line-height:1.1}.ygz small{margin-left:6px;font-size:12px;color:var(--ink3)}
+.yt{font-family:var(--serif);font-weight:700;font-size:14.5px;margin:4px 0 8px;line-height:1.35}
+.tags{display:flex;flex-wrap:wrap;gap:4px}.tags span{font-size:12px;background:var(--paper);border-radius:6px;padding:2px 7px;color:var(--ink2)}
+/* 행운 동물 */
+.animals{display:flex;flex-direction:column;gap:8px;margin:8px 0 6px}
+.an{display:flex;gap:12px;border:1px solid var(--line);border-radius:14px;padding:12px;background:#fff}
+.an.top{border-color:#e9c9a6;background:#fffaf2}
+.ae{font-size:38px;line-height:1;width:52px;height:52px;display:grid;place-items:center;background:var(--paper);border-radius:12px;flex:none}
+.anm{font-family:var(--serif);font-weight:700;font-size:16.5px}.anm .muted{font-family:var(--sans);font-weight:400;font-size:13px}
+.rs{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}.rs .ok{font-size:12px;background:#e7f1ea;color:var(--wood);border-radius:6px;padding:2px 7px}
+.ablurb{font-size:13.5px;color:var(--ink2);margin-top:4px!important;line-height:1.6}
+.ct{align-items:center}.ct b{font-size:11.5px;color:var(--ink3);margin-right:2px}.rs .warn{font-size:12px;background:var(--paper);color:var(--ink2);border-radius:6px;padding:2px 7px}
+/* 결제 수단 */
+.payhd{display:flex;align-items:center;gap:8px;margin-bottom:12px}.payhd h2{font-family:var(--serif);font-size:19px;flex:1}.payhd>span{font-weight:700;color:var(--seal)}
+.back{border:0;background:var(--paper);width:32px;height:32px;border-radius:10px;font-size:22px;line-height:1;cursor:pointer;color:var(--ink)}
+.pmlist{display:flex;flex-direction:column;gap:8px}
+.pm{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px 14px;cursor:pointer;font:inherit;color:var(--ink)}
+.pm:active,.pm.busy{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
+.pmi{width:40px;height:40px;border-radius:12px;background:var(--paper);display:grid;place-items:center;font-size:20px;flex:none}
+.pmi.brand{font:900 13px var(--sans);letter-spacing:-.3px}
+.pmt{flex:1;display:flex;flex-direction:column}.pmt b{font-size:15.5px}.pmt small{font-size:12.5px;color:var(--ink3)}
+.chev{font-size:22px;color:var(--ink3)}
+.spin.dark{border-color:rgba(0,0,0,.15);border-top-color:var(--ink)}
+/* 공유 버튼 */
+.sharebtns{display:flex;gap:8px}
+.sharebtns button{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;border:0;border-radius:12px;padding:13px 8px;font:700 15px var(--sans);cursor:pointer}
+.sharebtns .kakao{background:#FEE500;color:#191919}.sharebtns .lnk{background:var(--paper2);color:var(--ink)}
+footer{text-align:center;font-size:12px;color:var(--ink3);margin-top:26px;line-height:1.7}
+footer .biz{margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+footer .legal{display:flex;gap:14px;justify-content:center;margin-bottom:6px}
+footer a{color:var(--ink2)}
+.agree{display:flex;gap:8px;align-items:flex-start;background:var(--paper);border-radius:12px;padding:11px 12px;margin:0 0 12px;font-size:12.5px;color:var(--ink2);line-height:1.55;cursor:pointer}
+.agree input{width:18px;height:18px;margin-top:1px;flex:none;accent-color:var(--seal)}
+.agree a{color:var(--ink)}
+.agree.shake{animation:shake .35s}@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.spin{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:rot .7s linear infinite;vertical-align:-3px}
+@keyframes rot{to{transform:rotate(360deg)}}
+.fadein{animation:fadein .5s ease both}@keyframes fadein{from{opacity:0;transform:translateY(8px)}}
+/* ===== 다람이 · 오방색 테마 ===== */
+body{background:var(--paper);background-image:none}
+.wrap{padding:0 18px 60px}
+header.top{display:flex;align-items:center;justify-content:space-between;padding:18px 2px 0;text-align:left}
+.brand{display:flex;align-items:center;gap:8px;font-family:var(--serif);font-weight:700;font-size:19px;letter-spacing:-.3px;color:var(--ink);text-decoration:none}
+.cmark{display:flex;width:22px;height:22px;border-radius:6px;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(34,36,42,.12)}
+.cmark i,.band i{flex:1}
+.c0{background:#2E5E8C}.c1{background:#B8402F}.c2{background:#D69A1C}.c3{background:#FFFFFF}.c4{background:#2A2B30}
+.hero{display:flex;align-items:flex-end;gap:6px;padding:24px 2px 0}
+.hero h1{flex:1;margin:0;font-family:var(--serif);font-weight:700;font-size:31px;line-height:1.3;letter-spacing:-.6px}
+.hero img{flex:none;margin-right:-10px}
+.lead{margin:14px 2px 0;font-size:15.5px;line-height:1.65;color:var(--ink2)}
+.band{display:flex;height:10px;margin:22px -18px 22px}
+.band.thin{height:8px;margin:0}
+.card{border-radius:20px;border-color:var(--line);background:var(--card)}
+.card h2{font-size:19px;font-family:var(--serif)}
+.tabs{background:var(--paper2);border-radius:14px;margin:0 0 16px}
+.tabs button{border-radius:11px;min-height:44px;font-size:15.5px}
+input[type=text],select{background-color:var(--field);border-color:var(--fline);border-radius:12px;min-height:48px}
+input:focus,select:focus{outline:3px solid rgba(46,94,140,.35);border-color:var(--blue)}
+.seg{border-color:var(--fline);border-radius:12px}.seg button{min-height:46px}
+.btn{min-height:56px;border-radius:16px;font-size:17px}
+.btn.main{background:var(--blue);color:#fff}.btn.main:active{background:var(--blue-d)}
+.btn.pay{background:var(--seal);color:#fff}.btn.pay:active{background:var(--seal-d)}
+.btn:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.teaser{display:flex;align-items:center;gap:14px;padding:16px 18px;background:var(--ink);border-radius:20px;color:#fff;margin-bottom:14px;border:0;width:100%;text-align:left;font:inherit;cursor:pointer}
+.teaser .faces{display:flex;flex:none}.teaser .faces span{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#fff;border:2px solid var(--ink)}
+.teaser .faces span+span{margin-left:-10px}.teaser .faces img{width:34px;height:34px}
+.teaser strong{display:block;font-family:var(--serif);font-size:17px}.teaser small{font-size:13.5px;color:#C9CCD4}
+.e0,.e1,.e4{color:#fff}.e2{color:var(--ink)}.e3{color:var(--ink);box-shadow:inset 0 0 0 1.5px #C9CCC2}
+.e0{background:var(--wood)}.e1{background:var(--fire)}.e2{background:var(--earth)}.e3{background:var(--metal)}.e4{background:var(--water)}
+.t0{color:#2E5E8C}.t1{color:#B8402F}.t2{color:#9A6A0E}.t3{color:#6E727C}.t4{color:#2A2B30}
+.gz{min-height:76px;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:14px}
+.gz b{font-size:32px}.gz small{font-size:12px;opacity:1;margin-top:2px}
+.gz.me{box-shadow:0 0 0 3px var(--card),0 0 0 5px var(--ink)}
+.chart .hd{font-size:12.5px;color:var(--ink2)}.chart .hd.me{color:var(--ink);font-weight:700}
+.bubble{display:flex;align-items:flex-end;gap:4px;margin:4px 0 14px}
+.bubble .b{flex:1;background:#fff;border:1px solid var(--line);border-radius:18px 18px 18px 4px;padding:14px 16px;margin-bottom:16px}
+.bubble .b p{margin:0;font-size:13.5px;color:var(--ink2)}.bubble .b strong{display:block;margin-top:4px;font-family:var(--serif);font-size:19px;line-height:1.4;letter-spacing:-.3px}
+.ratio{display:flex;height:44px;border-radius:12px;overflow:hidden;box-shadow:inset 0 0 0 1px #C9CCC2}
+.ratio i{transition:flex-grow .8s cubic-bezier(.2,.8,.2,1)}.ratio i.c3{box-shadow:inset 1px 0 0 #C9CCC2,inset -1px 0 0 #C9CCC2}
+.rlabels{display:grid;grid-template-columns:repeat(5,1fr);text-align:center;font-size:13px;color:var(--ink2);margin-top:8px}.rlabels b{display:block;color:var(--ink)}
+.note{border-left:0;border-radius:14px;background:var(--paper)}
+.lockwrap{border-radius:20px;overflow:hidden;padding:0}
+.lockwrap .in{padding:20px;display:flex;flex-direction:column;gap:14px}
+.locklist{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px 12px;font-size:14.5px;margin:0}
+.locklist li{display:flex;align-items:center;gap:6px}.locklist li.star{grid-column:1/-1;padding:10px 12px;background:var(--paper);border-radius:12px;font-weight:700}
+.price{display:flex;align-items:baseline;justify-content:space-between}.price b{font-family:var(--serif);font-size:24px;color:var(--seal)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0}.chips span{padding:5px 11px;border-radius:14px;background:var(--paper);font-size:13px;color:var(--ink2)}
+.acc{border:1px solid var(--line);border-radius:20px;overflow:hidden;background:#fff}
+.acc section+section{border-top:1px solid #E4E6DE}
+.acc h3{margin:0}
+.acc .tg{width:100%;display:flex;align-items:flex-start;gap:12px;padding:18px 16px 18px 18px;border:0;background:#fff;text-align:left;color:var(--ink);cursor:pointer;font:inherit}
+.acc .tg[aria-expanded=true]{background:var(--field)}
+.acc .tg .lb{display:block;font-size:13px;color:var(--ink2)}
+.acc .tg .hd{display:block;margin-top:5px;font-family:var(--serif);font-weight:700;font-size:17px;line-height:1.45;letter-spacing:-.3px}
+.acc .tg svg{flex:none;margin-top:22px;transition:transform .16s}.acc .tg[aria-expanded=true] svg{transform:rotate(180deg)}
+.acc .bd{padding:0 18px 22px}.acc .bd p{font-size:15.5px;line-height:1.8;margin:0}.acc .bd p+p{margin-top:10px}
+.acctop{display:flex;align-items:center;justify-content:space-between;margin:4px 2px 10px}.acctop p{margin:0;font-size:14px;color:var(--ink2)}
+.acctop button{min-height:44px;border:0;background:none;color:var(--blue);font:inherit;font-size:14px;cursor:pointer}
+.lucky{background:var(--ink);color:#fff;border-radius:24px;overflow:hidden;margin:14px 0}
+.lucky .in{padding:20px 20px 22px;display:flex;flex-direction:column;gap:14px}
+.lucky .cap{font-size:13px;color:#C9CCD4}
+.lucky .first{display:flex;align-items:center;gap:18px}
+.lucky .face{display:grid;place-items:center;flex:none;width:100px;height:100px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px var(--ink),0 0 0 6px #D69A1C}
+.lucky .face img{width:86px;height:86px}
+.lucky .rank{align-self:flex-start;padding:3px 10px;border-radius:10px;background:#D69A1C;color:var(--ink);font-size:12.5px;font-weight:700}
+.lucky .nm{font-family:var(--serif);font-size:28px;letter-spacing:-.5px}
+.lucky p{margin:0;font-size:15px;line-height:1.75;color:#E6E7EA}
+.lucky .second{display:flex;align-items:center;gap:14px;padding:12px 14px;border-radius:16px;background:#2F3138}
+.lucky .second span.f{display:grid;place-items:center;flex:none;width:52px;height:52px;border-radius:50%;background:#fff}.lucky .second img{width:44px;height:44px}
+.lucky .second small{display:block;font-size:12.5px;color:#C9CCD4}.lucky .second em{font-style:normal;font-size:13.5px;color:#E6E7EA;line-height:1.5}
+.lucky .fine{font-size:12.5px;color:#A9ACB4;line-height:1.6}
+.dw{gap:6px}.dw .c{width:62px;border-radius:12px;background:var(--paper);border:0;padding:8px 0}.dw .c.now{background:var(--ink);color:#fff;box-shadow:none}.dw .c.now span,.dw .c.now small{color:#C9CCD4}
+.fab{position:fixed;right:max(18px,calc(50% - 222px));bottom:24px;display:grid;place-items:center;width:58px;height:58px;border:0;border-radius:50%;background:var(--seal);box-shadow:0 6px 16px rgba(34,36,42,.28);cursor:pointer;z-index:40}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="/" aria-label="이것이 사주다 처음으로"><span class="cmark" aria-hidden="true"><i class="c0"></i><i class="c1"></i><i class="c2"></i><i class="c3"></i><i class="c4"></i></span>이것이 사주다</a>
+  </header>
+  <div id="heroBox">
+    <div class="hero">
+      <h1>내 사주,<br>다람이가 쉽게<br>읽어 줄게요</h1>
+      <img src="/img/daram.svg" width="150" height="150" alt="도토리를 든 다람쥐 다람이">
+    </div>
+    <p class="lead">원국과 다섯 기운은 무료로 바로 보고, 990원이면 11가지 상세 풀이와 나만의 행운 동물까지 알려 드려요.</p>
+    <div class="band" aria-hidden="true"><i class="c0"></i><i class="c1"></i><i class="c2"></i><i class="c3"></i><i class="c4"></i></div>
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button id="tabMy" class="on" onclick="go('my')">내 사주</button>
+    <button id="tabCp" onclick="go('couple')">궁합</button>
+  </div>
+
+  <!-- 내 사주 -->
+  <section id="viewMy">
+    <div id="histMy" class="card hist hidden"></div>
+    <form class="card" id="formMy" onsubmit="return false"></form>
+    <button type="button" class="teaser" id="teaserBtn" onclick="$('#formMy [data-k=name]').focus()">
+      <span class="faces" aria-hidden="true"><span><img src="/img/animals/monkey.svg" alt=""></span><span><img src="/img/animals/rooster.svg" alt=""></span><span><img src="/img/animals/rat.svg" alt=""></span></span>
+      <span><strong>나를 돕는 행운 동물은?</strong><small>상세 풀이에서 다람이가 골라 드려요</small></span>
+    </button>
+    <div id="resMy"></div>
+  </section>
+
+  <!-- 궁합 -->
+  <section id="viewCp" class="hidden">
+    <div id="histCp" class="card hist hidden"></div>
+    <div class="card">
+      <h2>두 사람의 궁합</h2>
+      <p class="muted">타고난 기운이 서로 어울리는지, 부족한 기운을 채워 주는지로 계산해요.</p>
+      <div class="pcard" id="formA"></div>
+      <div class="pcard" id="formB"></div>
+      <button class="btn main" id="goCp">궁합 보기</button>
+      <p class="err" id="errCp"></p>
+    </div>
+    <div id="resCp"></div>
+  </section>
+
+  <footer>
+    <p>사주 풀이는 재미와 자기 성찰을 위한 참고용이에요.<br>
+    무료 풀이는 브라우저 안에서만 계산돼요. 상세 풀이를 열면 생년월일시가 풀이 생성을 위해 서버로 전송돼요.</p>
+    <div id="bizFooter" class="biz"></div>
+  </footer>
+</div>
+
+<script src="/js/biz.js"></script>
+<script src="/js/engine.js"></script>
+<script src="/js/lunar.js"></script>
+<script src="/js/content-free.js"></script>
+<script>
+const S = SAJU;
+// 시간 보정: 서버(/api/config)의 preciseLongitude가 false면 국내는 일반 만세력처럼 30분 보정(127.5°)
+const KOREA_STD_LON = 127.5;
+const CITIES = [['서울',126.98],['인천',126.70],['경기 수원',127.03],['강원 춘천',127.73],['강릉',128.88],['대전',127.38],['충북 청주',127.49],['세종',127.29],['광주',126.85],['전북 전주',127.15],['대구',128.60],['부산',129.08],['울산',129.31],['경남 창원',128.68],['포항',129.37],['제주',126.53],['해외/보정 안 함',null]];
+const NOW_YEAR = new Date(Date.now() + 9 * 3600e3).getUTCFullYear();
+const $ = (s, el = document) => el.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+function opts(a, b, sel, fmt = x => x) { let h = ''; for (let i = a; i <= b; i++) h += `<option value="${i}"${i === sel ? ' selected' : ''}>${fmt(i)}</option>`; return h; }
+const HOURS = ['모름'].concat([...Array(24)].map((_, i) => i));
+
+// ---- 입력폼 (재사용) ----
+function birthForm(el, id, title, def = {}) {
+  const d = Object.assign({ name: '', g: 'F', cal: 'S', y: 1995, m: 1, d: 1, h: -1, mi: 0, city: 0, leap: false }, def);
+  el.innerHTML = `
+    ${title ? `<div class="who">${title}</div>` : '<h2>생년월일시를 알려 주세요</h2>'}
+    <label class="f">이름 또는 별명</label>
+    <input type="text" data-k="name" maxlength="10" placeholder="예: 지은" value="${esc(d.name)}">
+    <div class="row">
+      <div><label class="f">성별</label><div class="seg" data-k="g"><button type="button" data-v="F" class="${d.g==='F'?'on':''}">여성</button><button type="button" data-v="M" class="${d.g==='M'?'on':''}">남성</button></div></div>
+      <div><label class="f">달력</label><div class="seg" data-k="cal"><button type="button" data-v="S" class="${d.cal==='S'?'on':''}">양력</button><button type="button" data-v="L" class="${d.cal==='L'?'on':''}">음력</button></div></div>
+    </div>
+    <label class="f">생년월일</label>
+    <div class="row">
+      <select data-k="y" aria-label="년">${opts(1930, 2025, d.y, x => x + '년')}</select>
+      <select data-k="m" aria-label="월">${opts(1, 12, d.m, x => x + '월')}</select>
+      <select data-k="d" aria-label="일">${opts(1, 31, d.d, x => x + '일')}</select>
+    </div>
+    <label class="chk leapchk ${d.cal==='L'?'':'hidden'}"><input type="checkbox" data-k="leap" ${d.leap?'checked':''}> 윤달이에요</label>
+    <label class="f">태어난 시간</label>
+    <div class="row">
+      <select data-k="h" aria-label="시">${HOURS.map((x, i) => `<option value="${i - 1}"${i - 1 === d.h ? ' selected' : ''}>${x === '모름' ? '시간 모름' : x + '시'}</option>`).join('')}</select>
+      <select data-k="mi" aria-label="분" ${d.h < 0 ? 'disabled' : ''}>${Array.from({ length: 60 }, (_, i) => i).map(x => `<option value="${x}"${x === d.mi ? ' selected' : ''}>${x}분</option>`).join('')}</select>
+    </div>
+    <label class="f">태어난 곳</label>
+    <select data-k="city">${CITIES.map((c, i) => `<option value="${i}"${i === d.city ? ' selected' : ''}>${c[0]}</option>`).join('')}</select>
+  `;
+  el.querySelectorAll('.seg').forEach(sg => sg.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    sg.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
+    if (sg.dataset.k === 'cal') el.querySelector('.leapchk').classList.toggle('hidden', b.dataset.v !== 'L');
+  }));
+  el.querySelector('[data-k=h]').addEventListener('change', e => { el.querySelector('[data-k=mi]').disabled = +e.target.value < 0; });
+}
+function readForm(el) {
+  const g = k => el.querySelector(`[data-k=${k}]`);
+  return { name: g('name').value.trim(), g: g('g').querySelector('.on').dataset.v, cal: g('cal').querySelector('.on').dataset.v,
+    y: +g('y').value, m: +g('m').value, d: +g('d').value, h: +g('h').value, mi: +g('mi').value, city: +g('city').value, leap: g('leap').checked };
+}
+function toInput(f) {
+  if (f.cal === 'S') { const dt = new Date(Date.UTC(f.y, f.m - 1, f.d)); if (dt.getUTCDate() !== f.d) throw new Error(`${f.m}월에는 ${f.d}일이 없어요`); }
+  return { y: f.y, m: f.m, d: f.d, hour: f.h < 0 ? null : f.h, minute: f.mi, gender: f.g, lon: CITIES[f.city][1] == null ? null : (CONFIG.preciseLongitude ? CITIES[f.city][1] : KOREA_STD_LON),
+    calendar: f.cal === 'L' ? 'lunar' : 'solar', leap: f.leap };
+}
+
+// ---- 공통 렌더 ----
+const gz = (s, b) => S.STEMS[s] + S.BRANCHES[b];
+const gzKo = (s, b) => S.STEMS_KO[s] + S.BRANCHES_KO[b];
+const POS_KO = { hour: '태어난 시간', day: '태어난 날 · 나', month: '태어난 달', year: '태어난 해' };
+function chartHTML(r) {
+  const cols = r.pillars.map(p => {
+    const hd = `<div class="hd ${p.key === 'day' ? 'me' : ''}">${POS_KO[p.key] || p.label}</div>`;
+    if (p.stem === null) return `<div>${hd}<div class="gz empty"><b>?</b><small>모름</small></div><div style="height:8px"></div><div class="gz empty"><b>?</b><small>모름</small></div></div>`;
+    return `<div>${hd}
+      <div class="gz e${S.STEM_EL[p.stem]} ${p.key==='day'?'me':''}"><b>${S.STEMS[p.stem]}</b><small>${S.STEMS_KO[p.stem]} · ${EL[S.STEM_EL[p.stem]]}</small></div>
+      <div style="height:8px"></div>
+      <div class="gz e${S.BRANCH_EL[p.branch]}"><b>${S.BRANCHES[p.branch]}</b><small>${S.BRANCHES_KO[p.branch]} · ${EL[S.BRANCH_EL[p.branch]]}</small></div></div>`;
+  }).join('');
+  return `<div class="chart" style="row-gap:8px">${cols}</div>`;
+}
+function barsHTML(r) {
+  const sh = r.yong.share.map(v => Math.round(v * 100));
+  return `<div class="ratio" role="img" aria-label="${EL.map((e, i) => e + ' ' + sh[i] + '%').join(', ')}">${sh.map((v, i) => `<i class="c${i}" style="flex-grow:0" data-w="${Math.max(v, 1)}"></i>`).join('')}</div>
+    <div class="rlabels">${EL.map((e, i) => `<span>${e}<b>${sh[i]}%</b></span>`).join('')}</div>`;
+}
+function animateBars(root) { requestAnimationFrame(() => setTimeout(() => root.querySelectorAll('.ratio i').forEach(f => f.style.flexGrow = f.dataset.w), 60)); }
+
+// ---- 내 사주 ----
+let lastMy = null, CONFIG = { price: 990, payMode: 'demo', ai: false };
+function runMy(fromLink) {
+  const f = readForm($('#formMy'));
+  let r; try { r = S.calc(toInput(f)); } catch (e) { $('#errMy').textContent = e.message; return; }
+  $('#errMy').textContent = '';
+  lastMy = { f, r, shared: !!fromLink };
+  renderMy();
+  if (!fromLink) histSave({ k: 'm' + birthKey(f), type: 'my', title: f.name || '이름 없음', sub: `${TXT.dayStem[r.dayStem].img} · ${f.y}.${f.m}.${f.d}${f.cal === 'L' ? '(음)' : ''}`, f });
+  setTimeout(() => $('#resMy').scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+}
+function renderMy() {
+  const { f, r } = lastMy;
+  const name = f.name || '당신';
+  const ds = TXT.dayStem[r.dayStem];
+  const max = Math.max(...r.elCount), min = Math.min(...r.elCount);
+  const muchI = r.elCount.indexOf(max), lackI = r.elCount.indexOf(min);
+  const sd = r.solarDate;
+  const pills = [`양력 ${sd.y}.${sd.m}.${sd.d}`, `${S.ANIMALS[S.yearPillar(r.sajuYear).branch]}띠`];
+  if (r.solarTime) pills.push(`시간 보정 ${r.solarTime}`);
+  if (r.dst) pills.push('서머타임 보정');
+  const price = (CONFIG.price || 990).toLocaleString();
+
+  const who = f.name ? esc(f.name) + '님' : lastMy.shared ? '이 사주' : '당신';
+  $('#resMy').innerHTML = `
+    <div class="bubble fadein">
+      <img src="/img/daram.svg" width="92" height="92" alt="" aria-hidden="true">
+      <div class="b"><p>${who === '당신' ? '당신의' : who + '의'} 사주를 읽어 봤어요</p><strong>${f.name ? esc(f.name) + '님은' : lastMy.shared ? '이 사주는' : '당신은'} ${ds.title}</strong></div>
+    </div>
+    <div class="card fadein">
+      <h2>타고난 여덟 글자</h2>
+      ${chartHTML(r)}
+      <div class="meta">${pills.map(p => `<span class="pill">${p}</span>`).join('')}</div>
+      ${r.hasTime ? '' : '<p class="muted" style="margin-top:10px">태어난 시간을 모르면 여섯 글자로 풀이해요.</p>'}
+    </div>
+    <div class="card fadein">
+      <p style="font-size:15.5px;line-height:1.75">${ds.body}</p>
+      <dl class="kv"><dt>강점</dt><dd>${ds.strong}</dd><dt>조심</dt><dd>${ds.care}</dd></dl>
+    </div>
+    <div class="card fadein">
+      <h2>다섯 기운의 비율</h2>
+      ${barsHTML(r)}
+      <p class="note">${max >= 3 ? TXT.elMuch[muchI] + ' ' : ''}${min === 0 ? ([r.yong.main, r.yong.hee].includes(lackI) ? TXT.elLack[lackI] : `${EL[lackI]} 기운은 겉으로 드러나 있지 않고 글자 속에만 조금 숨어 있어요. 다만 지금 사주에서는 다른 기운이 더 급해요. 아래를 참고하세요.`) : '다섯 기운이 모두 갖춰져 있어 기본 균형이 좋은 편이에요.'}</p>
+      <p style="font-size:15px;margin-top:10px;line-height:1.7">${TXT.strength[r.strength]}</p>
+    </div>
+    ${boostHTML(r)}
+    ${yearKwHTML(r)}
+    <div class="card fadein lockwrap" id="paidCard">
+      <div class="band thin" aria-hidden="true"><i class="c0"></i><i class="c1"></i><i class="c2"></i><i class="c3" style="background:#E4E6DE"></i><i class="c4"></i></div>
+      <div class="in" id="paidBody">
+        <div class="price"><h2 style="margin:0;font-size:21px">다람이의 상세 풀이 11가지</h2></div>
+        <ul class="locklist"><li><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2" fill="none" stroke="#6E727C" stroke-width="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3" fill="none" stroke="#6E727C" stroke-width="2"/></svg>타고난 기질</li><li><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2" fill="none" stroke="#6E727C" stroke-width="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3" fill="none" stroke="#6E727C" stroke-width="2"/></svg>쓴소리 좀 할게</li><li><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2" fill="none" stroke="#6E727C" stroke-width="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3" fill="none" stroke="#6E727C" stroke-width="2"/></svg>나만의 매력</li><li><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2" fill="none" stroke="#6E727C" stroke-width="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3" fill="none" stroke="#6E727C" stroke-width="2"/></svg>나에게 맞는 일</li><li><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2" fill="none" stroke="#6E727C" stroke-width="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3" fill="none" stroke="#6E727C" stroke-width="2"/></svg>재물복</li><li><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2" fill="none" stroke="#6E727C" stroke-width="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3" fill="none" stroke="#6E727C" stroke-width="2"/></svg>연애운</li><li><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2" fill="none" stroke="#6E727C" stroke-width="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3" fill="none" stroke="#6E727C" stroke-width="2"/></svg>가족 인연</li><li><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2" fill="none" stroke="#6E727C" stroke-width="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3" fill="none" stroke="#6E727C" stroke-width="2"/></svg>곁에 둘 사람</li><li><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2" fill="none" stroke="#6E727C" stroke-width="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3" fill="none" stroke="#6E727C" stroke-width="2"/></svg>10년 흐름</li><li><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2" fill="none" stroke="#6E727C" stroke-width="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3" fill="none" stroke="#6E727C" stroke-width="2"/></svg>마지막 한마디</li><li class="star"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.5 6.7 19.4l1.2-6L3.4 9.3l6-.7z" fill="#D69A1C"/></svg>나를 돕는 행운 동물</li></ul>
+        <button class="btn pay" style="margin:0" onclick="openPay()">${price}원으로 전체 풀이 열기</button>
+        <p class="muted" style="text-align:center;margin:0">결제하면 바로 열리고, 이 기기에 저장돼요${CONFIG.payMode === 'test' ? ' · 테스트 결제 모드라 실제로 청구되지 않아요' : ''}</p>
+      </div>
+    </div>
+    <div class="card fadein"><h2>내 사주 공유하기</h2>
+      <p class="muted" style="margin-bottom:10px">무료 풀이(여덟 글자·성격·다섯 기운)만 공유돼요. 상세 풀이는 공유되지 않아요.</p>
+      ${shareHTML('my')}</div>
+    <div class="card fadein"><h2>이 사람과는 잘 맞을까?</h2><p class="muted">궁합을 보고 결과를 카톡으로 보내 보세요.</p>
+      <button class="btn ghost" onclick="toCouple()">궁합 보러 가기</button></div>`;
+  const dEl = S.STEM_EL[r.dayStem];
+  SHARES.my = { title: `${f.name ? f.name + '님은' : '나는'} '${ds.title}'`,
+    desc: `${EL.map((e, i) => e + ' ' + Math.round(r.yong.share[i] * 100) + '%').join(' · ')} · 다람이가 읽어 준 내 사주`,
+    img: `/og/my-${dEl}.png`, url: baseUrl() + '#s-' + birthKey(f), btn: '사주 보기' };
+  bindBoost($('#resMy'));
+  if (lastMy.shared) $('#resMy').insertAdjacentHTML('afterbegin', '<div class="card fadein sharedbn">공유받은 사주예요. <a href="#my" onclick="newMy();return false">내 사주도 보기</a></div>');
+  animateBars($('#resMy'));
+  const bk = birthKey(f), pur = loadPurchase(bk);
+  if (pur) unlockMy(pur);
+}
+const TEASER = '';
+
+// ---- 구매 정보 (이 브라우저에만 저장) ----
+const store = { get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} } };
+const encF0 = f => `${f.y}${String(f.m).padStart(2,'0')}${String(f.d).padStart(2,'0')}${f.h < 0 ? 'xxxx' : String(f.h).padStart(2,'0') + String(f.mi).padStart(2,'0')}${f.g}${f.cal === 'S' ? 'S' : f.leap ? 'Y' : 'L'}${f.city}`;
+const birthKey = encF0;
+function loadPurchase(bk) { const all = store.get('pn_purchases') || {}; return all[bk] || null; }
+function savePurchase(bk, p) { const all = store.get('pn_purchases') || {}; all[bk] = p; store.set('pn_purchases', all); }
+
+const CHEV = '<svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="#6E727C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+function accItem(s, open) {
+  const r = lastMy.r, curDw = r.daewoon.filter(d => d.year <= NOW_YEAR).pop();
+  const strip = s.id === 'flow' ? `<div class="dw" style="margin-bottom:12px">${r.daewoon.slice(0, 6).map(d => `<div class="c ${curDw === d ? 'now' : ''}"><small>${d.year}~</small><b>${S.STEMS[d.stem]}${S.BRANCHES[d.branch]}</b><span>${d.age}세${curDw === d ? ' · 지금' : ''}</span></div>`).join('')}</div>` : '';
+  return `<section><h3><button type="button" class="tg" aria-expanded="${open}" data-acc="${s.id}"><span style="flex:1"><span class="lb">${esc(s.title)}</span><span class="hd">${esc(s.headline || s.title)}</span></span>${CHEV}</button></h3>
+    <div class="bd" ${open ? '' : 'hidden'}>${strip}${s.paras.map(p => `<p>${esc(p)}</p>`).join('')}</div></section>`;
+}
+function luckyHTML(s) {
+  const [a, b] = s.items || [];
+  if (!a) return '';
+  return `<article class="lucky"><div class="band thin" aria-hidden="true"><i class="c0"></i><i class="c1"></i><i class="c2"></i><i class="c3"></i><i class="c4" style="background:#5A5D66"></i></div><div class="in">
+    <span class="cap">나의 행운 동물</span>
+    <div class="first"><span class="face"><img src="/img/animals/${a.key}.svg" alt="${esc(a.name)} 그림"></span><div style="display:flex;flex-direction:column;gap:6px"><span class="rank">1순위</span><strong class="nm">${esc(a.name)}</strong></div></div>
+    <p>${esc(a.blurb || '')}</p>
+    ${b ? `<div class="second"><span class="f"><img src="/img/animals/${b.key}.svg" alt="${esc(b.name)} 그림"></span><div><small>2순위 · ${esc(b.name)}</small><em>${esc(b.blurb || '')}</em></div></div>` : ''}
+    ${(s.paras || []).filter(p => !p.startsWith('※') && !p.startsWith('당신 사주의 흐름')).map(p => `<p style="font-size:14.5px">${esc(p)}</p>`).join('')}
+    <p class="fine">행운 동물은 곁에 두는 상징물을 위한 추천이에요. 사람과의 궁합을 보는 '잘 맞는 띠'와는 달라요.</p>
+  </div></article>`;
+}
+async function unlockMy(pur) {
+  const card = $('#paidCard'); if (!card) return;
+  const body = $('#paidBody'); if (!body) return;
+  const cacheKey = 'pn_reading_' + pur.orderId;
+  let data = store.get(cacheKey);
+  if (data && data.v !== 2) data = null;   // 예전 형식(짧은 풀이)은 새로 받아요
+  if (!data) {
+    body.innerHTML = `<div style="text-align:center;padding:30px 0"><img src="/img/daram.svg" width="96" height="96" alt="" aria-hidden="true"><p style="margin-top:10px;font-family:var(--serif);font-weight:700;font-size:17px">다람이가 11가지 풀이를 쓰고 있어요</p><p class="muted" id="waitMsg" style="margin-top:4px">${CONFIG.ai ? '30초 정도 걸려요. 창을 닫지 마세요' : '잠깐만 기다려 주세요'}</p></div>`;
+    const waitSteps = ['타고난 기질을 읽는 중…', '쓴소리를 고르는 중…', '맞는 일과 재물을 살피는 중…', '연애와 가족 인연을 보는 중…', '10년 흐름을 짚는 중…', '행운 동물을 고르는 중…'];
+    let wi = 0; const waitT = CONFIG.ai ? setInterval(() => { const w = $('#waitMsg'); if (!w) return clearInterval(waitT); w.textContent = waitSteps[wi++ % waitSteps.length]; }, 5000) : null;
+    try {
+      const res = await fetch('/api/reading', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ orderId: pur.orderId, token: pur.token, form: lastMy.f, name: lastMy.f.name }) });
+      data = await res.json();
+      if (!res.ok) throw new Error(data.message || '풀이를 불러오지 못했어요');
+      store.set(cacheKey, data);
+    } catch (e) {
+      body.innerHTML = `<p class="err">${esc(e.message)}</p><button class="btn ghost" onclick="unlockMy(loadPurchase(birthKey(lastMy.f)))">다시 시도</button>`;
+      return;
+    } finally { if (waitT) clearInterval(waitT); }
+  }
+  const f = lastMy.f, sd = lastMy.r.solarDate;
+  const chips = [`${sd.y}년 ${sd.m}월 ${sd.d}일`, '양력', f.h < 0 ? '시간 모름' : `${f.h < 12 ? '오전' : '오후'} ${((f.h + 11) % 12) + 1}시 ${f.mi}분`, f.g === 'M' ? '남성' : '여성'];
+  const secs = data.sections;
+  const ai = secs.findIndex(x => x.id === 'animal');
+  const before = ai < 0 ? secs : secs.slice(0, ai), animal = ai < 0 ? null : secs[ai], after = ai < 0 ? [] : secs.slice(ai + 1);
+  card.classList.remove('lockwrap'); card.style.background = 'transparent'; card.style.border = '0'; card.style.padding = '0';
+  card.innerHTML = `<div style="padding:2px 2px 0"><h2 style="font-size:23px">${f.name ? esc(f.name) + '님의' : '나의'} 상세 풀이</h2><div class="chips">${chips.map(c => `<span>${esc(c)}</span>`).join('')}</div></div>
+    <div class="acctop"><p>제목을 누르면 풀이가 펼쳐져요</p><button type="button" id="accAll">모두 펼치기</button></div>
+    <div class="acc">${before.map((x, i) => accItem(x, i === 0)).join('')}</div>
+    ${animal ? luckyHTML(animal) : ''}
+    ${after.length ? `<div class="acc">${after.map(x => accItem(x, false)).join('')}</div>` : ''}`;
+  card.addEventListener('click', e => {
+    const t = e.target.closest('.tg');
+    if (t) { const open = t.getAttribute('aria-expanded') !== 'true'; t.setAttribute('aria-expanded', open); t.closest('section').querySelector('.bd').hidden = !open; syncAll(); return; }
+    if (e.target.id === 'accAll') { const tgs = [...card.querySelectorAll('.tg')]; const openAll = tgs.some(x => x.getAttribute('aria-expanded') !== 'true');
+      tgs.forEach(x => { x.setAttribute('aria-expanded', openAll); x.closest('section').querySelector('.bd').hidden = !openAll; }); syncAll(); }
+  });
+  function syncAll() { const tgs = [...card.querySelectorAll('.tg')]; $('#accAll').textContent = tgs.every(x => x.getAttribute('aria-expanded') === 'true') ? '모두 접기' : '모두 펼치기'; }
+  if (!$('#fabShare')) document.body.insertAdjacentHTML('beforeend', `<button type="button" class="fab" id="fabShare" aria-label="내 사주 공유하기" onclick="doShare('my')"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5.5" r="2.6" fill="none" stroke="#fff" stroke-width="2"/><circle cx="6" cy="12" r="2.6" fill="none" stroke="#fff" stroke-width="2"/><circle cx="18" cy="18.5" r="2.6" fill="none" stroke="#fff" stroke-width="2"/><path d="M8.3 10.8l7.4-4M8.3 13.2l7.4 4" stroke="#fff" stroke-width="2"/></svg></button>`);
+}
+
+
+// ---- 오행 보완법 (용신·희신 기준) ----
+const EL_H = '木火土金水';
+const jo = (w, a, b) => { const k = w.replace(/\([^)]*\)$/, ''); const c = k.charCodeAt(k.length - 1) - 0xAC00; return w + (c >= 0 && c % 28 ? a : b); };
+const EL = ['나무', '불', '흙', '쇠', '물'];
+const elName = e => EL[e];
+const MONTH_KO = ['자','축','인','묘','진','사','오','미','신','유','술','해'];
+function yongReasons(r) {
+  const y = r.yong, m = y.main, d = S.STEM_EL[r.dayStem], E = elName(m), out = [];
+  const mb = r.pillars[2].branch;
+  for (const w of y.why) {
+    if (w === 'johu' && y.johu === 'hot') out.push(`여름에 태어나 사주가 뜨거운 편이에요. 열기를 식혀 줄 ${jo(E, '이', '가')} 가장 먼저 필요해요.`);
+    else if (w === 'johu' && y.johu === 'cold') out.push(`겨울에 태어나 사주가 차가운 편이에요. 온기를 더해 줄 ${jo(E, '이', '가')} 가장 먼저 필요해요.`);
+    else if (w === 'eokbu') {
+      const rel = S.mod(m - d, 5), me = '타고난 나';
+      if (r.strength === '신약') out.push(rel === 4 ? `${me}의 힘이 약한 편이에요. 나를 키워 주는 ${E} 기운이 힘이 돼요.` : `${me}의 힘이 약한 편이에요. 나와 같은 ${E} 기운이 힘을 보태 줘요.`);
+      else out.push(`${me}의 힘이 강한 편이에요. ` + (rel === 1 ? `넘치는 기운을 밖으로 풀어 주는 ${E} 기운이 운을 열어 줘요.` : rel === 2 ? `넘치는 힘을 결실로 바꿔 주는 ${E} 기운이 필요해요.` : `넘치는 힘을 다잡아 주는 ${E} 기운이 균형을 잡아 줘요.`));
+    }
+    else if (w === 'balance') out.push(`타고난 나의 힘이 고른 편이에요. 상대적으로 약한 ${E} 기운을 챙기면 더 단단해져요.`);
+    else if (w.startsWith('tong:')) { const [, a, b] = w.split(':').map(Number); out.push(`${jo(elName(a), '과', '와')} ${jo(elName(b), '이', '가')} 강하게 맞서고 있어요. 둘 사이를 이어 주는 ${jo(E, '이', '가')} 다리 역할을 해요.`); }
+    else if (w === 'zero') out.push(`게다가 사주에 ${EL[m]} 기운이 아예 없어요.`);
+  }
+  return out;
+}
+function boostHTML(r) {
+  const y = r.yong, m = y.main, h = y.hee;
+  const reasons = yongReasons(r);
+  const heeTxt = h === S.mod(m - 1, 5) ? `${jo(elName(h), '은', '는')} ${jo(EL[m], '을', '를')} 키워 주는 기운이라 함께 챙기면 좋아요.` : `${elName(h)}도 함께 챙기면 도움이 되는 기운이에요.`;
+  const excess = [0,1,2,3,4].filter(e => y.share[e] >= 0.33);
+  const avoid = excess.length ? `반대로 ${excess.map(elName).join('·')} 기운은 이미 넘치니 더하지 않는 게 좋아요.` : `${jo(elName(y.gi), '은', '는')} 필요한 기운을 눌러 버리니 지나치게 쓰지 않는 게 좋아요.`;
+  const panel = (e, role) => { const b = TXT.boost[e]; return `
+    <div class="bhead"><span class="bel e${e}">${b.hanja}</span><div><b>${EL['목화토금수'.indexOf(b.el)]} 기운 채우기</b><div class="role">${role}</div><div class="muted">${b.mood}</div></div></div>
+    <div class="sw">${b.colors.map(([n, hx]) => `<div><i style="background:${hx}"></i><span>${n}</span></div>`).join('')}</div>
+    <dl class="kv bkv"><dt>행운 숫자</dt><dd>${b.nums}</dd><dt>좋은 방향</dt><dd>${b.dir}</dd><dt>힘 받는 때</dt><dd>${b.time}</dd>
+      <dt>음식</dt><dd>${b.food}</dd><dt>생활 습관</dt><dd>${b.habit}</dd><dt>아이템</dt><dd>${b.item}</dd></dl>`; };
+  return `<div class="card fadein" id="boostCard">
+    <h2>나에게 가장 필요한 기운</h2>
+    <div class="yongline"><span class="ychip e${m}">가장 필요한 기운 · ${elName(m)}</span><span class="ychip soft"><i class="dot e${h}"></i>함께 챙길 기운 · ${elName(h)}</span></div>
+    <p style="font-size:14.5px">${reasons.join(' ')}</p>
+    <p style="font-size:14.5px;margin-top:6px">${heeTxt} ${avoid}</p>
+    <div class="seg btab" style="margin:12px 0 2px"><button type="button" data-i="0" class="on">${EL[m]} 채우기</button><button type="button" data-i="1">${EL[h]} 채우기</button></div>
+    <div class="bpanel">${panel(m, '가장 필요한 기운')}</div><div class="bpanel hidden">${panel(h, '함께 챙길 기운')}</div>
+    <p class="muted" style="margin-top:10px">필요한 기운은 태어난 계절, 나의 힘, 부딪히는 기운 사이의 다리, 아예 없는 기운 순서로 판단했어요. 학파마다 해석이 다를 수 있는 참고용 풀이예요.</p>
+  </div>`;
+}
+function bindBoost(root) {
+  const t = $('.btab', root); if (!t) return;
+  t.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return;
+    t.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
+    root.querySelectorAll('.bpanel').forEach((p, i) => p.classList.toggle('hidden', i !== +b.dataset.i)); });
+}
+
+// ---- 올해/내년 키워드 ----
+const LIUHE_ = [[0,1],[2,11],[3,10],[4,9],[5,8],[6,7]];
+const GRP = {비견:'비겁',겁재:'비겁',식신:'식상',상관:'식상',편재:'재성',정재:'재성',편관:'관성',정관:'관성',편인:'인성',정인:'인성'};
+function yearKeywords(r, y) {
+  const yp = S.yearPillar(y);
+  const sg = GRP[S.tenGod(r.dayStem, yp.stem)], bg = GRP[S.tenGod(r.dayStem, S.BRANCH_MAIN[yp.branch])];
+  const kw = [TXT.yearKw[sg].kw[0], TXT.yearKw[sg].kw[1], sg === bg ? TXT.yearKw[sg].kw[2] : TXT.yearKw[bg].kw[0], TXT.yearKw[sg].kw[3]];
+  if (Math.abs(yp.branch - r.dayBranch) === 6) kw[2] = TXT.yearKw.충;
+  else if (LIUHE_.some(([a, b]) => (a === yp.branch && b === r.dayBranch) || (b === yp.branch && a === r.dayBranch))) kw[2] = TXT.yearKw.합;
+  const dwStart = r.daewoon.some(d => d.year === y);
+  const title = dwStart ? '10년 운이 바뀌는 해' : TXT.yearKw[bg !== sg ? bg : sg].title;
+  if (dwStart) kw[3] = '#새10년';
+  return { y, yp, title, kw: [...new Set(kw)] };
+}
+function yearKwHTML(r) {
+  const ys = [NOW_YEAR, NOW_YEAR + 1].map(y => yearKeywords(r, y));
+  return `<div class="card fadein"><h2>올해·내년 키워드</h2><div class="ykw">${ys.map((k, i) => `
+    <div class="yk ${i ? 'next' : ''}"><div class="yy">${k.y}<span>${i ? '내년' : '올해'}</span></div>
+      <div class="ygz"><b class="t${S.STEM_EL[k.yp.stem]}">${S.STEMS[k.yp.stem]}</b><b class="t${S.BRANCH_EL[k.yp.branch]}">${S.BRANCHES[k.yp.branch]}</b><small>${gzKo(k.yp.stem, k.yp.branch)}년</small></div>
+      <div class="yt">${k.title}</div><div class="tags">${k.kw.map(w => `<span>${w}</span>`).join('')}</div></div>`).join('')}</div>
+    <p class="muted" style="margin-top:10px">${NOW_YEAR + 1}년 자세한 흐름은 상세 풀이에서 볼 수 있어요.</p></div>`;
+}
+
+// ---- 기록 (이 브라우저에 저장) ----
+function histAll() { return store.get('pn_history') || []; }
+function histSave(item) {
+  const all = histAll().filter(x => x.k !== item.k);
+  all.unshift(Object.assign(item, { at: Date.now() }));
+  store.set('pn_history', all.slice(0, 20)); renderHist();
+}
+function histDel(k) { store.set('pn_history', histAll().filter(x => x.k !== k)); renderHist(); }
+function fmtDate(t) { const d = new Date(t); return `${d.getMonth() + 1}.${d.getDate()}`; }
+function renderHist() {
+  for (const [type, el] of [['my', $('#histMy')], ['cp', $('#histCp')]]) {
+    if (!el) continue;
+    const items = histAll().filter(x => x.type === type);
+    if (!items.length) { el.innerHTML = ''; el.classList.add('hidden'); continue; }
+    el.classList.remove('hidden');
+    el.innerHTML = `<div class="hh"><b>${type === 'my' ? '최근 본 사주' : '최근 본 궁합'}</b><span class="muted">이 기기에만 저장돼요</span></div>
+      <ul class="hl">${items.map(x => `<li><button class="ho" data-k="${esc(x.k)}"><span class="hn">${esc(x.title)}</span><span class="hs">${esc(x.sub)} · ${fmtDate(x.at)}</span>${x.type === 'my' && loadPurchase(birthKey(x.f)) ? '<span class="badge">상세</span>' : ''}</button><button class="hx" data-x="${esc(x.k)}" aria-label="삭제">×</button></li>`).join('')}</ul>`;
+    el.onclick = e => {
+      const del = e.target.closest('[data-x]'); if (del) return histDel(del.dataset.x);
+      const o = e.target.closest('[data-k]'); if (!o) return;
+      const it = histAll().find(x => x.k === o.dataset.k); if (!it) return;
+      if (it.type === 'my') { setMyForm(it.f); runMy(); }
+      else { birthForm($('#formA'), 'A', '나', it.f); birthForm($('#formB'), 'B', '상대', it.fb); runCp(false); }
+    };
+  }
+}
+function newMy() { setMyForm({}); $('#resMy').innerHTML = ''; lastMy = null; try { history.replaceState(null, '', '#my'); } catch (e) {} window.scrollTo({ top: 0, behavior: 'smooth' }); }
+function setMyForm(f) {
+  birthForm($('#formMy'), 'my', null, f);
+  $('#formMy').insertAdjacentHTML('beforeend', '<button class="btn main" id="goMy">무료로 내 사주 보기</button><p class="err" id="errMy"></p>');
+  $('#goMy').onclick = () => runMy();
+}
+
+// ---- 공유 (카카오톡 / 기본 공유 / 링크 복사) ----
+const KAKAO_SDK = 'https://t1.kakaocdn.net/kakao_js_sdk/2.8.2/kakao.min.js';
+let kakaoReady = null;
+function loadKakao() {
+  if (kakaoReady) return kakaoReady;
+  kakaoReady = new Promise((ok, no) => {
+    if (window.Kakao) { try { if (!Kakao.isInitialized()) Kakao.init(CONFIG.kakaoKey); return ok(); } catch (e) { return no(e); } }
+    const s = document.createElement('script'); s.src = KAKAO_SDK;
+    s.integrity = 'sha384-zt/G7/KfaRQ9dT/QIkS0ujMtzouJqzuSJcXVQu50x0rl/+mD1dc70AeOejVbMD9E'; s.crossOrigin = 'anonymous';
+    s.onload = () => { try { if (!Kakao.isInitialized()) Kakao.init(CONFIG.kakaoKey); ok(); } catch (e) { no(e); } };
+    s.onerror = () => { kakaoReady = null; no(new Error('카카오 공유를 불러오지 못했어요')); };
+    document.head.appendChild(s);
+  });
+  return kakaoReady;
+}
+function shareHTML(id) {
+  return `<div class="sharebtns"><button class="kakao" onclick="doShare('${id}','kakao')"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="#191919" d="M12 3C6.5 3 2 6.5 2 10.8c0 2.8 1.9 5.2 4.7 6.6l-1 3.6c-.1.3.3.6.6.4l4.2-2.8c.5.1 1 .1 1.5.1 5.5 0 10-3.5 10-7.8S17.5 3 12 3z"/></svg>카카오톡 공유</button><button class="lnk" onclick="doShare('${id}','link')">링크 복사</button></div>`;
+}
+const SHARES = {};
+async function doShare(id, how) {
+  const d = SHARES[id]; if (!d) return;
+  if (how === 'kakao') {
+    if (CONFIG.kakaoKey) {
+      try {
+        await loadKakao();
+        Kakao.Share.sendDefault({ objectType: 'feed',
+          content: { title: d.title, description: d.desc, imageUrl: location.origin + d.img, imageWidth: 1200, imageHeight: 630,
+            link: { mobileWebUrl: d.url, webUrl: d.url } },
+          buttons: [{ title: d.btn, link: { mobileWebUrl: d.url, webUrl: d.url } },
+                    { title: '내 사주 보기', link: { mobileWebUrl: location.origin + '/', webUrl: location.origin + '/' } }] });
+        return;
+      } catch (e) { console.warn(e); }
+    }
+    if (navigator.share) { try { await navigator.share({ title: d.title, text: d.desc, url: d.url }); return; } catch (e) { if (e.name === 'AbortError') return; } }
+  }
+  try { await navigator.clipboard.writeText(d.url); toast('링크를 복사했어요. 카톡에 붙여넣어 보내 보세요'); }
+  catch (e) { toast('복사가 안 되면 주소창 링크를 길게 눌러 복사해 주세요'); }
+}
+const baseUrl = () => location.origin + location.pathname;
+
+// ---- 결제 ----
+function newOrderId() { const a = new Uint8Array(12); crypto.getRandomValues(a); return 'pn_' + Date.now().toString(36) + '_' + [...a].map(x => x.toString(36).padStart(2, '0')).join('').slice(0, 18); }
+function loadScript(src) { return new Promise((ok, no) => { const s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = () => no(new Error('결제 모듈을 불러오지 못했어요')); document.head.appendChild(s); }); }
+
+// ---- 결제 수단 선택 시트 ----
+// 첫 화면: 국내 카드 / 간편결제 / 퀵계좌이체 / 해외카드
+// 간편결제: 카카오페이 / 네이버페이 / 토스페이 / 신용카드
+const PAY_TOP = {
+  card:     { label: '국내 카드', sub: '신용·체크카드', icon: '💳' },
+  easypay:  { label: '간편결제', sub: '카카오페이 · 네이버페이 · 토스페이', icon: '⚡' },
+  transfer: { label: '퀵계좌이체', sub: '내 계좌에서 바로 결제', icon: '🏦' },
+  foreign:  { label: '해외카드', sub: 'Visa · Mastercard · JCB · AMEX', icon: '🌏' },
+};
+const EASY = {
+  KAKAOPAY: { label: '카카오페이', bg: '#FEE500', fg: '#191919', mark: 'pay' },
+  NAVERPAY: { label: '네이버페이', bg: '#03C75A', fg: '#fff', mark: 'N' },
+  TOSSPAY:  { label: '토스페이', bg: '#0064FF', fg: '#fff', mark: 'toss' },
+};
+// 고른 수단 → 토스 requestPayment 옵션
+function payOptions(choice) {
+  if (choice === 'card') return { method: 'CARD', card: { flowMode: 'DEFAULT' } };
+  if (choice === 'transfer') return { method: 'TRANSFER', transfer: { cashReceipt: { type: '소득공제' }, useEscrow: false } };
+  if (choice === 'foreign') return { method: 'CARD', card: { useInternationalCardOnly: true } };
+  if (EASY[choice]) return { method: 'CARD', card: { flowMode: 'DIRECT', easyPay: choice } };
+  return { method: 'CARD', card: { flowMode: 'DEFAULT' } };
+}
+function choiceLabel(c) { return PAY_TOP[c]?.label || EASY[c]?.label || (c === 'credit' ? '신용카드' : c); }
+
+async function openPay() {
+  if (!lastMy) return;
+  const m = document.createElement('div'); m.className = 'modal';
+  const price = CONFIG.price.toLocaleString();
+  const methods = (CONFIG.methods || ['card', 'easypay', 'transfer', 'foreign']).filter(k => PAY_TOP[k]);
+  const easys = (CONFIG.easyPays || Object.keys(EASY)).filter(k => EASY[k]);
+  let agreed = false;
+  const top = () => `
+    ${CONFIG.payMode !== 'live' ? `<div class="demo">${CONFIG.payMode === 'demo' ? '데모 모드예요. 토스 키를 설정하면 실제 결제창이 열려요.' : '테스트 결제 모드예요. 실제로 청구되지 않아요.'}</div>` : ''}
+    <div class="payhd"><h2>결제 수단 선택</h2><span>${price}원</span></div>
+    <label class="agree"><input type="checkbox" id="agreeChk" ${agreed ? 'checked' : ''}><span>상세 풀이는 결제 즉시 제공되는 디지털 콘텐츠라, 열람 후에는 단순 변심으로 환불할 수 없어요. <a href="/refund.html" target="_blank">환불정책</a>과 <a href="/terms.html" target="_blank">이용약관</a>, <a href="/privacy.html" target="_blank">개인정보 국외 이전</a>을 확인했고 동의해요. (필수)</span></label>
+    <div class="pmlist">${methods.map(k => `<button class="pm" data-c="${k}"><span class="pmi">${PAY_TOP[k].icon}</span><span class="pmt"><b>${PAY_TOP[k].label}</b><small>${PAY_TOP[k].sub}</small></span><span class="chev">›</span></button>`).join('')}</div>
+    <button class="btn" style="background:none;color:var(--ink3);margin-top:8px;padding:8px" data-x>닫기</button>`;
+  const easy = () => `
+    <div class="payhd"><button class="back" data-back aria-label="뒤로">‹</button><h2>간편결제</h2><span>${price}원</span></div>
+    <div class="pmlist">${easys.map(k => `<button class="pm" data-c="${k}"><span class="pmi brand" style="background:${EASY[k].bg};color:${EASY[k].fg}">${EASY[k].mark}</span><span class="pmt"><b>${EASY[k].label}</b></span><span class="chev">›</span></button>`).join('')}
+      <button class="pm" data-c="credit"><span class="pmi">💳</span><span class="pmt"><b>신용카드</b><small>카드사 앱·카드번호로 결제</small></span><span class="chev">›</span></button></div>
+    <button class="btn" style="background:none;color:var(--ink3);margin-top:8px;padding:8px" data-x>닫기</button>`;
+  m.innerHTML = `<div class="sheet" role="dialog" aria-label="결제 수단 선택"><div class="sheetbody">${top()}</div></div>`;
+  document.body.appendChild(m);
+  const body = $('.sheetbody', m);
+  m.addEventListener('change', e => { if (e.target.id === 'agreeChk') agreed = e.target.checked; });
+  m.addEventListener('click', e => {
+    if (e.target === m || e.target.closest('[data-x]')) return m.remove();
+    if (e.target.closest('.agree')) return;
+    if (e.target.closest('[data-back]')) { body.innerHTML = top(); return; }
+    const b = e.target.closest('[data-c]'); if (!b) return;
+    const c = b.dataset.c;
+    if (!agreed) { body.innerHTML = top(); const a = $('.agree', body); a.classList.add('shake'); toast('결제 전 안내에 동의해 주세요'); return; }
+    if (c === 'easypay') { body.innerHTML = easy(); return; }
+    startPay(c === 'credit' ? 'card' : c, b, m);
+  });
+}
+
+async function startPay(choice, btn, modal) {
+  const f = lastMy.f, bk = birthKey(f), orderId = newOrderId();
+  btn.classList.add('busy'); btn.querySelector('.chev').innerHTML = '<span class="spin dark"></span>';
+  if (CONFIG.payMode === 'demo') {
+    const res = await fetch('/api/confirm', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ orderId, form: f }) });
+    const d = await res.json(); modal.remove();
+    if (!res.ok) return toast(d.message || '실패했어요');
+    const pur = { orderId, token: d.token }; savePurchase(bk, pur);
+    toast(`${choiceLabel(choice)}(데모)로 결제했어요`); unlockMy(pur); $('#paidCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    return;
+  }
+  const foreign = choice === 'foreign';
+  store.set('pn_pending_' + orderId, { form: f, bk, method: foreign ? 'foreign' : 'domestic' });
+  try {
+    if (!window.TossPayments) await loadScript('https://js.tosspayments.com/v2/standard');
+    const toss = TossPayments(foreign && CONFIG.intlClientKey ? CONFIG.intlClientKey : CONFIG.clientKey);
+    const payment = toss.payment({ customerKey: TossPayments.ANONYMOUS });
+    await payment.requestPayment({
+      ...payOptions(choice),
+      amount: { currency: 'KRW', value: CONFIG.price },
+      orderId, orderName: '이것이 사주다 상세 사주 풀이',
+      successUrl: location.origin + '/success.html',
+      failUrl: location.origin + '/fail.html',
+    });
+  } catch (e) {
+    btn.classList.remove('busy'); btn.querySelector('.chev').textContent = '›';
+    if (e && e.code === 'USER_CANCEL') return toast('결제를 취소했어요');
+    if (e && /NOT_SUPPORTED|NOT_REGISTERED|INVALID_EASY/.test(e.code || '')) return toast(`${choiceLabel(choice)}는 아직 준비 중이에요. 다른 결제 수단을 골라 주세요`);
+    toast((e && e.message) || '결제를 시작하지 못했어요');
+  }
+}
+function toast(t) { const d = document.createElement('div'); d.className = 'toast'; d.textContent = t; document.body.appendChild(d); setTimeout(() => d.remove(), 2200); }
+
+// ---- 궁합 ----
+const LIUHE = [[0,1],[2,11],[3,10],[4,9],[5,8],[6,7]];
+const SANHE = [[8,0,4],[11,3,7],[2,6,10],[5,9,1]];
+const isPair = (a, b, list) => list.some(([x, y]) => (x === a && y === b) || (x === b && y === a));
+function compat(A, B, nA, nB) {
+  let sc = 62; const rs = [];
+  const add = (v, t) => { sc += v; rs.push({ v, t }); };
+  const sa = A.dayStem, sb = B.dayStem, ea = S.STEM_EL[sa], eb = S.STEM_EL[sb];
+  if ((sa + 5) % 10 === sb) add(16, `타고난 기운끼리 짝을 이뤄요. 처음부터 묘하게 끌리고, 함께 있으면 서로의 모난 부분이 부드러워지는 인연이에요.`);
+  if (ea === eb) add(6, `두 사람 모두 ${EL[ea]} 기운으로 태어났어요. 가치관이 비슷해 친구처럼 편한 관계예요.`);
+  else if (S.mod(eb - ea, 5) === 1) add(10, `${nA}님의 ${EL[ea]} 기운이 ${nB}님의 ${EL[eb]} 기운을 키워 줘요. ${nA}님이 아낌없이 주고, ${nB}님이 그 덕에 피어나는 관계예요.`);
+  else if (S.mod(ea - eb, 5) === 1) add(10, `${nB}님의 ${EL[eb]} 기운이 ${nA}님의 ${EL[ea]} 기운을 키워 줘요. ${nB}님이 든든한 버팀목이 되어주는 관계예요.`);
+  else if (S.mod(eb - ea, 5) === 2) add(-4, `${nA}님의 ${EL[ea]} 기운이 ${nB}님의 ${EL[eb]} 기운을 눌러요. ${nA}님이 주도하는 구도라, ${nB}님이 답답함을 느끼지 않게 배려가 필요해요.`);
+  else add(-4, `${nB}님의 ${EL[eb]} 기운이 ${nA}님의 ${EL[ea]} 기운을 눌러요. 자극이 되는 만큼 부딪힘도 있어요. 말투를 조심하면 오히려 서로를 성장시켜요.`);
+  const da = A.dayBranch, db = B.dayBranch;
+  if (isPair(da, db, LIUHE)) add(14, `서로의 배우자 자리가 잘 어울려요. 생활 리듬과 정서가 잘 맞아 함께 살기 좋은 궁합이에요.`);
+  else if (Math.abs(da - db) === 6) add(-10, `서로의 배우자 자리가 부딪혀요. 끌림은 강하지만 생활 방식 차이로 다투기 쉬워요. 서로의 공간을 지켜주세요.`);
+  else if (da !== db && SANHE.some(g => g.includes(da) && g.includes(db))) add(8, `같은 방향을 바라보는 파트너예요. 함께 목표를 세우면 시너지가 커요.`);
+  else if (da === db) add(4, `배우자 자리가 같은 글자예요. 생활 습관이 닮아 편안하지만, 같은 부분에서 같이 약해질 수 있어요.`);
+  const lackA = A.elCount.indexOf(Math.min(...A.elCount)), lackB = B.elCount.indexOf(Math.min(...B.elCount));
+  const topA = A.elCount.indexOf(Math.max(...A.elCount)), topB = B.elCount.indexOf(Math.max(...B.elCount));
+  if (B.elCount[lackA] >= 2 && A.elCount[lackA] <= 1) add(7, `${nA}님에게 부족한 ${EL[lackA]} 기운을 ${nB}님이 채워줘요.`);
+  if (A.elCount[lackB] >= 2 && B.elCount[lackB] <= 1) add(7, `${nB}님에게 부족한 ${EL[lackB]} 기운을 ${nA}님이 채워줘요.`);
+  if (topA === topB && A.elCount[topA] >= 3 && B.elCount[topB] >= 3) add(-5, `두 사람 모두 ${EL[topA]} 기운이 강해요. 같은 고집으로 부딪힐 수 있어요.`);
+  const ya = S.yearPillar(A.sajuYear).branch, yb = S.yearPillar(B.sajuYear).branch;
+  if (isPair(ya, yb, LIUHE) || (ya !== yb && SANHE.some(g => g.includes(ya) && g.includes(yb)))) add(4, `${S.ANIMALS[ya]}띠와 ${S.ANIMALS[yb]}띠는 서로 잘 어울리는 띠 궁합이에요.`);
+  else if (Math.abs(ya - yb) === 6) add(-3, `${S.ANIMALS[ya]}띠와 ${S.ANIMALS[yb]}띠는 서로 부딪히는 띠예요. 집안 분위기나 가치관 차이를 미리 대화해 두세요.`);
+  sc = Math.max(41, Math.min(98, sc));
+  const tier = sc >= 88 ? ['천생연분', '서로가 서로의 빈칸을 채우는, 보기 드문 인연이에요.'] : sc >= 76 ? ['찰떡궁합', '함께할수록 편안하고 힘이 되는 관계예요.'] : sc >= 64 ? ['좋은 인연', '노력한 만큼 깊어지는 관계예요. 서로의 다름을 즐겨 보세요.'] : sc >= 52 ? ['밀당 궁합', '끌림과 부딪힘이 공존해요. 대화가 이 관계의 열쇠예요.'] : ['성장 궁합', '쉽지 않지만 서로를 가장 많이 성장시키는 관계예요.'];
+  return { sc, rs, tier };
+}
+// 공유용 해시: c-<A>-<B>, 각 = YYYYMMDD HHMM|xxxx 성별 달력(S/L/Y=윤) 지역
+const encF = f => `${f.y}${String(f.m).padStart(2,'0')}${String(f.d).padStart(2,'0')}${f.h < 0 ? 'xxxx' : String(f.h).padStart(2,'0') + String(f.mi).padStart(2,'0')}${f.g}${f.cal === 'S' ? 'S' : f.leap ? 'Y' : 'L'}${f.city}`;
+function decF(s) {
+  const m = /^(\d{4})(\d{2})(\d{2})(\d{4}|xxxx)([MF])([SLY])(\d{1,2})$/.exec(s); if (!m) return null;
+  return { name: '', y: +m[1], m: +m[2], d: +m[3], h: m[4] === 'xxxx' ? -1 : +m[4].slice(0, 2), mi: m[4] === 'xxxx' ? 0 : +m[4].slice(2), g: m[5], cal: m[6] === 'S' ? 'S' : 'L', leap: m[6] === 'Y', city: Math.min(+m[7], CITIES.length - 1) };
+}
+function runCp(fromLink) {
+  const fa = readForm($('#formA')), fb = readForm($('#formB'));
+  let A, B;
+  try { A = S.calc(toInput(fa)); B = S.calc(toInput(fb)); } catch (e) { $('#errCp').textContent = e.message; return; }
+  $('#errCp').textContent = '';
+  const nA = esc(fa.name || '나'), nB = esc(fb.name || '상대');
+  const { sc, rs, tier } = compat(A, B, nA, nB);
+  if (!fromLink) histSave({ k: 'c' + encF(fa) + '-' + encF(fb), type: 'cp', title: `${fa.name || '나'} ♥ ${fb.name || '상대'}`, sub: `${sc}점 ${tier[0]}`, f: fa, fb });
+  const hash = `c-${encF(fa)}-${encF(fb)}`;
+  const link = baseUrl() + '#' + hash;
+  try { history.replaceState(null, '', '#' + hash); } catch (e) {}
+  const C = 2 * Math.PI * 64;
+  $('#resCp').innerHTML = `<div class="card fadein">
+    <div class="score">
+      <div class="ring"><svg width="150" height="150"><circle cx="75" cy="75" r="64" fill="none" stroke="var(--paper2)" stroke-width="12"/><circle id="arc" cx="75" cy="75" r="64" fill="none" stroke="var(--seal)" stroke-width="12" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C}" style="transition:stroke-dashoffset 1s cubic-bezier(.2,.8,.2,1)"/></svg><div class="v"><span>${sc}<small>점</small></span></div></div>
+      <div class="tier">${tier[0]}</div><p class="muted" style="font-size:14px">${tier[1]}</p>
+    </div>
+    <div class="vs">
+      <div class="p"><span>${nA}</span><b><span class="t${S.STEM_EL[A.dayStem]}">${S.STEMS[A.dayStem]}</span><span class="t${S.BRANCH_EL[A.dayBranch]}">${S.BRANCHES[A.dayBranch]}</span></b><span>${gzKo(A.dayStem, A.dayBranch)}</span></div>
+      <div class="x">♥</div>
+      <div class="p"><span>${nB}</span><b><span class="t${S.STEM_EL[B.dayStem]}">${S.STEMS[B.dayStem]}</span><span class="t${S.BRANCH_EL[B.dayBranch]}">${S.BRANCHES[B.dayBranch]}</span></b><span>${gzKo(B.dayStem, B.dayBranch)}</span></div>
+    </div>
+    <ul class="reason">${rs.map(x => `<li><span class="d ${x.v >= 0 ? 'plus' : 'minus'}">${x.v >= 0 ? '+' : ''}${x.v}</span><span>${x.t}</span></li>`).join('')}</ul>
+  </div>
+  <div class="card fadein"><h2>궁합 결과 보내기</h2>
+    <p class="muted" style="margin-bottom:10px">받은 사람도 같은 궁합 결과를 볼 수 있어요. 링크에는 이름 없이 생년월일시만 담겨요.</p>
+    ${shareHTML('cp')}
+  </div>`;
+  SHARES.cp = { title: `${fa.name || '나'} ♥ ${fb.name || '상대'} 궁합 ${sc}점`, desc: `${tier[0]} — ${tier[1]}`, img: '/og/couple.png', url: link, btn: '궁합 결과 보기' };
+  requestAnimationFrame(() => setTimeout(() => { const a = $('#arc'); if (a) a.style.strokeDashoffset = C * (1 - sc / 100); }, 60));
+  if (!fromLink) setTimeout(() => $('#resCp').scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+}
+
+// ---- 라우팅 ----
+function go(v) {
+  const my = v === 'my';
+  $('#viewMy').classList.toggle('hidden', !my); $('#viewCp').classList.toggle('hidden', my);
+  $('#tabMy').classList.toggle('on', my); $('#tabCp').classList.toggle('on', !my);
+  try { history.replaceState(null, '', my ? '#my' : '#couple'); } catch (e) {}
+}
+function toCouple() {
+  if (lastMy) birthForm($('#formA'), 'A', '나', lastMy.f);
+  go('couple'); window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+async function init() {
+  try { CONFIG = Object.assign(CONFIG, await (await fetch('/api/config')).json()); } catch (e) {}
+  setMyForm({ y: 1995, m: 1, d: 1 });
+  renderHist();
+  birthForm($('#formA'), 'A', '나', { g: 'F' });
+  birthForm($('#formB'), 'B', '상대', { g: 'M', y: 1993 });
+  $('#goCp').onclick = () => runCp(false);
+  const paid = new URLSearchParams(location.search).get('paid');
+  if (paid) {
+    const pend = store.get('pn_pending_' + paid);
+    history.replaceState(null, '', location.pathname);
+    if (pend) { setMyForm(pend.form); runMy(); toast('결제가 완료됐어요'); return; }
+  }
+  const h = location.hash.slice(1);
+  const m = /^c-([0-9x]+[MF][SLY]\d+)-([0-9x]+[MF][SLY]\d+)$/.exec(h);
+  if (m) {
+    const a = decF(m[1]), b = decF(m[2]);
+    if (a && b) { birthForm($('#formA'), 'A', '나', a); birthForm($('#formB'), 'B', '상대', b); go('couple'); runCp(true); try { history.replaceState(null, '', '#' + h); } catch (e) {} return; }
+  }
+  const sm = /^s-([0-9x]+[MF][SLY]\d+)$/.exec(h);
+  if (sm && decF(sm[1])) { setMyForm(decF(sm[1])); runMy(true); return; }
+  if (h === 'couple') go('couple');
+}
+window.addEventListener('hashchange', () => { const h = location.hash.slice(1); if (h === 'my' || h === 'couple') go(h); });
+init();
+</script>
+</body>
+</html>
